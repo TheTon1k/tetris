@@ -1,0 +1,40 @@
+.loginForm {
+  height: 85vh;
+  width: 60vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  transform: translateX(-100vw);
+  transition: transform 1s ease-in-out;
+
+}
+.rollLeft {
+  transform: translateX(-100vw);
+}
+
+.loginForm button {
+  min-width: 10vw;
+  min-height: 5vh;
+}
+
+
+.loginForm input {
+  min-width: 20vw;
+}
+
+label {
+  display: block;
+  color: #2f6648;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 0.5em;
+  text-align: center;
+  font-size: 1.5vw;
+  padding: 5px;
+}
+
+.loginForm span {
+  color: red;
+  font-size: 1vw;
+}

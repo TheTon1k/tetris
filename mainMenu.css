@@ -1,0 +1,51 @@
+.mainMenu {
+  overflow: hidden;
+  height: 85vh;
+  width: 60vw;
+  background: url("./assets/imgs/tetris-wallpaper-hd-1440x900-450598.jpg") top
+    no-repeat;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  transform: translateX(100vw);
+  transition: 1s ease-in-out;
+
+}
+
+.rollRight {
+  transform: translateX(0);
+}
+
+.welcome {
+  font-size: 3vw;
+}
+.mainMenu img {
+  width: 30px;
+  height: 30px;
+  align-self: flex-end;
+  margin: 10px 10px -30px 0;
+  cursor: pointer;
+}
+
+.mainMenu ul li {
+  list-style: none;
+  font-size: 10vh;
+  background-color: rgb(92, 206, 252);
+  margin: 1rem;
+  border-radius: 5%;
+}
+.mainMenu ul {
+  cursor: pointer;
+  text-align: center;
+}
+
+.optionsDiv {
+  position: absolute;
+  margin-top: 8%;
+  width: 50%;
+  height: 80%;
+  opacity: 0.8;
+  background-color: #fff;
+}
