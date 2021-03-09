@@ -1,259 +1,202 @@
 
 .canvasesDiv {
-  max-height: 720px;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  position: relative;
-  transition: transform 1s ease-in-out;
+    max-height: 720px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    transition: transform 1s ease-in-out;
 }
 
 .topPos {
-  transform: translateY(-95vh);
+    transform: translateY(-95vh);
 }
 .roll {
-  transform: translateY(0);
+    transform: translateY(0);
 }
 
 .gameDiv {
-  border-right: 1px solid white;
+    border-right: 1px solid white;
 }
 #tetris {
-  max-width: 60vw;
-  max-height: 80vh;
+    max-width: 60vw;
+    max-height: 80vh;
 }
 
 .navigateDiv {
-  max-height: 80vh;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #000;
-  max-width: 30vw;
-  align-self: flex-start;
-  align-items: center;
-  text-align: center;
-  padding: 5px;
+    max-height: 80vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    max-width: 30vw;
+    align-self: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
 }
 #nextFigure {
-  max-height: 20vh;
+    max-height: 20vh;
 
-  width: 100%;
+    width: 100%;
 }
 .score {
-  color: wheat;
-  font-size: 25px;
-  word-wrap: normal;
-  padding: 0.2em;
-  width: 100%;
+    color: wheat;
+    font-size: 25px;
+    word-wrap: normal;
+    padding: 0.2em;
+    width: 100%;
 }
 .action {
-  cursor: pointer;
+    cursor: pointer;
 }
 .bordered {
-  border-bottom: 1px solid white;
-  padding-bottom: 0.2rem;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.2rem;
 }
 
 .controlDiv {
-  margin: 10px;
-  text-align: center;
-  transition: transform 1s ease-in-out;
-  max-height: 10vh;
-  display: none;
+    margin: 10px;
+    text-align: center;
+    transition: transform 1s ease-in-out;
+    max-height: 10vh;
+    display: none;
 }
 
 button.controlButton {
-  margin: 10px;
-  font-size: 20px;
-  width: 20vw;
-  height: 5vh;
+    margin: 10px;
+    font-size: 20px;
+    width: 20vw;
+    height: 5vh;
 }
 button.controlButton.up {
-  display: block;
-  margin: 10px auto;
-}
-
-@media screen and (max-width: 1200px){
-  .controlDiv {
     display: block;
-  }
-  #tetris {
-    width: 75vw;
-    max-height: 75vh;
-    height: 75vh;
-
-  }
-  .navigateDiv {
-    width: 15vw;
-    max-height: 75vh;
-    height: 75vh;
-
-  }
-  #nextFigure {
-    max-height: 15vh;
-    max-width: 100%;
-  }
-}
-@media screen and (max-width: 1200px) and (max-width: 850px) {
-  #tetris {
-    max-height: 75vh;
-  }
-  .navigateDiv {
-    max-height: 75vh;
-  }
+    margin: 10px auto;
 }
 
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width: 416px) {
+    #tetris {
+        height: 75vh;
+        width: 75vw;
+    }
 
-@media screen and (max-width: 950px)  {
-  #tetris {
-    max-height: 70vh;
-  }
-  .navigateDiv{
-    width: 20vw;
-    max-height: 70vh;
+    .navigateDiv {
+        height: 75vh;
+        max-width: 15vw;
 
-  }
-}
-@media screen and (max-width: 950px)and (max-height: 850px)  {
-  #tetris {
-    max-height: 75vh;
-  }
-  .navigateDiv{
-    max-height: 75vh;
+    }
 
-  }
-}
-@media screen and (max-width: 820px) and (min-height: 850px){
-  #tetris {
-    max-height: 65vh;
-  }
-  .navigateDiv {
-    max-height: 65vh;
-  }
-}
+    .score {
+        font-size: 8px;
+    }
 
-@media screen and (max-width: 820px) and (max-height: 820px) {
-  #tetris {
-    max-height: 75vh;
-  }
-  .navigateDiv {
-    max-height: 75vh;
-  }
+    .controlDiv {
+        display: block;
+        margin: 0;
+    }
+
+    button.controlButton {
+        margin: 5px;
+        font-size: 12px;
+        width: 11vw;
+        height: 6vh;
+    }
+    button.controlButton.up {
+        margin: 5px auto;
+    }
 }
 
-@media screen and (max-width: 710px) {
-  #tetris {
-    max-height: 65vh;
-  }
-  .navigateDiv {
-    max-height: 65vh;
-    width: 25vw;
-  }
-  .score {
-    font-size: 23px;
-  }
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width: 415px) {
+    #tetris {
+        height: 52vh;
+        max-width: 73vw;
+    }
+
+    .navigateDiv {
+        height: 52vh;
+        max-width: 25vw;
+
+    }
+    .score{
+        font-size: 12px;
+    }
+    .controlDiv{
+        display: block;
+    }
 }
 
-@media screen and (max-width: 710px) and (max-height: 850px){
-
-  .score {
-    font-size: 20px;
-  }
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px)
+and (orientation: landscape) {
+    #tetris {
+        height: 75vh;
+        width: 75vw;
+    }
+    .navigateDiv {
+        height: 75vh;
+        width: 23vw;
+    }
+    button.controlButton {
+        margin: 10px;
+        font-size: 18px;
+        width: 18vw;
+        height: 7vh;
+    }
+    .score {
+        font-size: 21px;
+    }
 }
 
-@media screen and (max-width: 620px){
-  #tetris {
-    max-height: 65vh;
-  }
-  .navigateDiv {
-    max-height: 65vh;
-  }
-  .score {
-    font-size: 21px;
-  }
-}
-@media screen and (max-width: 620px) and (max-height: 685px){
-  #tetris {
-    max-height: 62vh;
-  }
-  .navigateDiv {
-    max-height: 62vh;
-  }
-  .score {
-    font-size: 16px;
-  }
-}
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width: 765px)
+and (max-device-width: 1024px)
+and (orientation: portrait) {
+    button.controlButton {
+        margin: 5px;
+        font-size: 24px;
+        width: 19vw;
+        height: 8vh;
+    }
+    .score {
+        font-size: 24px;
+    }
+    .navigateDiv {
+        height: 60vh;
+        max-width: 20vw;
+    }
+    #tetris {
+        height: 60vh;
+        width: 70vw;
+    }
 
-@media screen and (max-width: 500px) and (min-height: 790px){
-  #tetris {
-    max-height: 55vh;
-  }
-
-  .navigateDiv {
-    max-height: 55vh;
-  }
-
-  .score {
-    font-size: 20px;
-  }
 }
 
-@media screen and (max-width: 500px) and (max-height: 790px) {
-  #tetris {
-    max-height: 50vh;
-  }
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width: 1224px) {
+    .controlDiv{
+        display: none;
+    }
+    #tetris{
+        height: 75vh;
+        max-height: 720px;
+        width: 30vw;
+        max-width: 660px;
 
-  .navigateDiv {
-    max-height: 50vh;
-  }
-  .score{
-    font-size: 12px;
-  }
+    }
+    .navigateDiv {
+        height: 75vh;
+        max-height: 720px;
+        max-width: 25vw;
+    }
+    .score{
+        font-size: 24px;
+    }
 }
-
-@media screen and (max-width: 450px) {
-  #tetris {
-    max-height: 48vh;
-  }
-
-  .navigateDiv {
-    max-height: 48vh;
-  }
-
-  .score {
-    font-size: 16px;
-  }
-}
-@media screen and (max-width: 450px) and (max-height: 640px) {
-  #tetris {
-    max-height: 50vh;
-    max-width: 70vw;
-  }
-
-  .navigateDiv {
-    max-height: 50vh;
-    max-width: 25vw;
-
-  }
-  .score{
-    font-size: 12px;
-  }
-}
-
-@media screen and (max-width: 400px){
-  #tetris {
-    max-height: 50vh;
-    max-width: 70vw;
-  }
-
-  .navigateDiv {
-    max-height: 50vh;
-    max-width: 25vw;
-
-  }
-  .score{
-    font-size: 12px;
-  }
-}
-
