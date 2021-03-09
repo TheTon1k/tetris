@@ -31,8 +31,10 @@ const getLoginPage = () => {
         inputName.focus();
         localStorage.setItem("name", inputName.value);
         loginForm.classList.remove("rollRight");
+        showPreloader()
         setTimeout(() => {
           window.location.hash = "mainPage";
+          hidePreloader()
         }, 1000);
       } else {
         inputName.focus();
@@ -42,5 +44,8 @@ const getLoginPage = () => {
     window.setTimeout(() => {
       loginForm.classList.add("rollRight");
     }, 0);
-  } else window.location.hash = "mainPage";
+  } else {
+    showPreloader()
+    window.location.hash = "mainPage";
+  }
 };

@@ -56,10 +56,6 @@
 .optionsDiv input {
   cursor: pointer;
   width: 50%;
-  transition: 0.3s;
-}
-.optionsDiv input:hover {
-  transform: scale(1.1);
 }
 
 .optionsDiv span {
