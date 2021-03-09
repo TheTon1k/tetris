@@ -84,7 +84,7 @@ and (min-width: 316px) and (orientation: landscape) {
 
     .navigateDiv {
         height: 75vh;
-        max-width: 15vw;
+        max-width: 20vw;
 
     }
 
@@ -128,12 +128,41 @@ and (max-width: 415px) {
         display: block;
     }
 }
+/*Big smartphones*/
+@media only screen
+and (min-device-width: 768px)
+and (max-device-height: 400px)
+and (orientation: landscape){
+    #tetris {
+        height: 78vh;
+        width: 50vw;
+    }
+    .navigateDiv {
+        height: 78vh;
+        width: 23vw;
+    }
+    button.controlButton {
+        margin: 5px;
+        font-size: 11px;
+        width: 11vw;
+        height: 5vh;
+    }
+    .score {
+        font-size: 10px;
+    }
+    #nextFigure {
+        max-height: 20vh;
+        width: 95%;
+}
 
-/* iPads (landscape) ----------- */
+    /* iPads (landscape) ----------- */
 @media only screen
 and (min-device-width: 768px)
 and (max-device-width: 1024px)
+and (min-device-height: 400px)
 and (orientation: landscape) {
+
+}
     #tetris {
         height: 75vh;
         width: 75vw;
