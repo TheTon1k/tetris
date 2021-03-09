@@ -76,7 +76,7 @@ button.controlButton.up {
 
 /* Smartphones (landscape) ----------- */
 @media only screen
-and (min-width: 416px) {
+and (min-width: 316px) and (orientation: landscape) {
     #tetris {
         height: 75vh;
         width: 75vw;
