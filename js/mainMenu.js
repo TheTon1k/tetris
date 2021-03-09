@@ -5,7 +5,6 @@ function getMainMenuPage() {
   else {
     //тетрис
     document.title = "Tetris MainMenu";
-    getSetRecords();
     wrapper.innerHTML = "";
     const mainMenu = create("div");
     mainMenu.id = "mainMenu";
