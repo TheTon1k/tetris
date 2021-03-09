@@ -22,7 +22,7 @@ function getGamePage(reload) {
             button.onclick = () => {
                 moveBlock(move);
                 isVibration && supportsVibrate && window.navigator.vibrate(20);
-            };
+            }
             return button;
         }
 
@@ -113,6 +113,7 @@ function getGamePage(reload) {
                     controlDiv.classList.remove("roll");
                     score = 0;
                     cancelAnimationFrame(animation)
+                    showPreloader()
                     setTimeout(() => {
                         window.location.hash = "mainPage";
                     }, 1000);
@@ -120,8 +121,10 @@ function getGamePage(reload) {
             } else {
                 canvasesDiv.classList.remove("roll");
                 controlDiv.classList.remove("roll");
+                showPreloader()
                 setTimeout(() => {
                     window.location.hash = "mainPage";
+                    hidePreloader()
                 }, 1000);
             }
         };
@@ -352,19 +355,20 @@ function getGamePage(reload) {
             let pass = generatePassword();
             getSetRecords((val) => newResults(val, score, pass), "LOCKGET", pass);
             context.fillStyle = "#000";
-            context.globalAlpha = 0.8;
+            context.globalAlpha = 5;
             context.fillRect(
                 0,
                 canvas.height / 2 - blockSize * 2,
                 canvas.width,
                 blockSize * 4
             );
-            context.globalAlpha = 1;
+            context.globalAlpha = 5;
             context.fillStyle = "white";
             context.font = "bold 5vh serif";
             context.textAlign = "center";
             context.textBaseline = "middle";
             context.fillText("GAME OVER!", canvas.width / 2, canvas.height / 2);
+            cancelAnimationFrame(animation)
         }
 
         function moveBlock(side) {
@@ -562,7 +566,7 @@ function getGamePage(reload) {
             }
             let y2 = e.touches[0].clientY;
             let diffY = y1 - y2;
-            if (diffY > 200) {
+            if (diffY > 150) {
                 mainMenuSpan.click();
                 document.removeEventListener("touchmove", handleMoveToMainMenu);
                 cancelAnimationFrame(animation)
