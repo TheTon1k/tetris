@@ -565,7 +565,7 @@ function getGamePage(reload) {
             }
             let y2 = e.touches[0].clientY;
             let diffY = y1 - y2;
-            if (diffY > 150) {
+            if (diffY > 250) {
                 mainMenuSpan.click();
                 document.removeEventListener("touchmove", handleMoveToMainMenu);
                 cancelAnimationFrame(animation)
