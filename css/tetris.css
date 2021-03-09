@@ -130,8 +130,8 @@ and (max-width: 415px) {
 }
 /*Big smartphones*/
 @media only screen
-and (max-device-width: 768px)
-and (max-device-height: 430px)
+and (min-device-width: 768px)
+and (max-device-height: 400px)
 and (orientation: landscape) {
     #tetris {
         height: 78vh;
@@ -164,10 +164,8 @@ and (orientation: landscape) {
 @media only screen
 and (min-device-width: 768px)
 and (max-device-width: 1024px)
-and (min-device-height: 450px)
+and (min-device-height: 400px)
 and (orientation: landscape) {
-
-
     #tetris {
         height: 75vh;
         width: 75vw;
