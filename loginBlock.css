@@ -8,7 +8,6 @@
   text-align: center;
   transform: translateX(-100vw);
   transition: transform 1s ease-in-out;
-
 }
 .rollLeft {
   transform: translateX(-100vw);
@@ -19,7 +18,6 @@
   min-height: 5vh;
 }
 
-
 .loginForm input {
   min-width: 20vw;
 }
@@ -28,9 +26,9 @@ label {
   display: block;
   color: #2f6648;
   font-family: "Press Start 2P", cursive;
-  letter-spacing: 0.5em;
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 5vh;
+  font-weight: 600;
   padding: 5px;
 }
 
