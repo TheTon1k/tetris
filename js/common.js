@@ -90,6 +90,8 @@ const newResults = (list, score, p) => {
 let x1 = null;
 let y1 = null;
 
+window.addEventListener('touchstart',handleTouchStart)
+
 function handleTouchStart(e) {
     const firstTouch = e.touches[0];
     x1 = firstTouch.clientX;

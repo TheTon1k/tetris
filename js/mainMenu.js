@@ -165,7 +165,6 @@ function getMainMenuPage() {
     }, 100);
 
     //свайпы
-    document.addEventListener("touchstart", handleTouchStart);
     document.addEventListener("touchmove", handleMoveForLogout);
 
     function handleMoveForLogout(e) {
@@ -173,7 +172,6 @@ function getMainMenuPage() {
         return false;
       }
       let x2 = e.touches[0].clientX;
-
       let diffX = x2 - x1;
       if (diffX > 150) {
         logout.click();

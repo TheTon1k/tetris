@@ -116,6 +116,7 @@ function getGamePage(reload) {
                     showPreloader()
                     setTimeout(() => {
                         window.location.hash = "mainPage";
+                        hidePreloader()
                     }, 1000);
                 }
             } else {
@@ -556,10 +557,8 @@ function getGamePage(reload) {
             canvasesDiv.classList.add("roll");
             controlDiv.classList.add("roll");
         }
-        //свайпы
-        document.addEventListener("touchstart", handleTouchStart);
+        //свайп
         document.addEventListener("touchmove", handleMoveToMainMenu);
-
         function handleMoveToMainMenu(e) {
             if (!y1) {
                 return false;
