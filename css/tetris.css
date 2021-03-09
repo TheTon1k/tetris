@@ -1,0 +1,234 @@
+
+.canvasesDiv {
+    max-height: 720px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    transition: transform 1s ease-in-out;
+}
+
+.topPos {
+    transform: translateY(-95vh);
+}
+.roll {
+    transform: translateY(0);
+}
+
+.gameDiv {
+    border-right: 1px solid white;
+}
+#tetris {
+    max-width: 60vw;
+    max-height: 80vh;
+}
+
+.navigateDiv {
+    max-height: 80vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    max-width: 30vw;
+    align-self: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+}
+#nextFigure {
+    max-height: 20vh;
+
+    width: 100%;
+}
+.score {
+    color: wheat;
+    font-size: 25px;
+    word-wrap: normal;
+    padding: 0.2em;
+    width: 100%;
+}
+.action {
+    cursor: pointer;
+}
+.bordered {
+    border-bottom: 1px solid white;
+    padding-bottom: 0.2rem;
+}
+
+.controlDiv {
+    margin: 10px;
+    text-align: center;
+    transition: transform 1s ease-in-out;
+    max-height: 10vh;
+    display: none;
+}
+
+button.controlButton {
+    margin: 10px;
+    font-size: 20px;
+    width: 20vw;
+    height: 5vh;
+}
+button.controlButton.up {
+    display: block;
+    margin: 10px auto;
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width: 316px) and (orientation: landscape) {
+    #tetris {
+        height: 75vh;
+        width: 75vw;
+    }
+
+    .navigateDiv {
+        height: 75vh;
+        max-width: 20vw;
+
+    }
+
+    .score {
+        font-size: 8px;
+    }
+
+    .controlDiv {
+        display: block;
+        margin: 0;
+    }
+
+    button.controlButton {
+        margin: 5px;
+        font-size: 12px;
+        width: 11vw;
+        height: 6vh;
+    }
+    button.controlButton.up {
+        margin: 5px auto;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width: 415px) {
+    #tetris {
+        height: 52vh;
+        max-width: 73vw;
+    }
+
+    .navigateDiv {
+        height: 52vh;
+        max-width: 25vw;
+
+    }
+    .score{
+        font-size: 12px;
+    }
+    .controlDiv{
+        display: block;
+    }
+}
+/*Big smartphones*/
+@media only screen
+and (min-device-width: 768px)
+and (max-device-height: 400px)
+and (orientation: landscape) {
+    #tetris {
+        height: 78vh;
+        width: 50vw;
+    }
+
+    .navigateDiv {
+        height: 78vh;
+        width: 23vw;
+    }
+
+    button.controlButton {
+        margin: 5px;
+        font-size: 11px;
+        width: 11vw;
+        height: 5vh;
+    }
+
+    .score {
+        font-size: 9px;
+    }
+
+    #nextFigure {
+        max-height: 20vh;
+        width: 95%;
+    }
+}
+
+    /* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px)
+and (min-device-height: 400px)
+and (orientation: landscape) {
+    #tetris {
+        height: 75vh;
+        width: 75vw;
+    }
+    .navigateDiv {
+        height: 75vh;
+        width: 23vw;
+    }
+    button.controlButton {
+        margin: 10px;
+        font-size: 18px;
+        width: 18vw;
+        height: 7vh;
+    }
+    .score {
+        font-size: 21px;
+    }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width: 765px)
+and (max-device-width: 1024px)
+and (orientation: portrait) {
+    button.controlButton {
+        margin: 5px;
+        font-size: 24px;
+        width: 19vw;
+        height: 8vh;
+    }
+    .score {
+        font-size: 24px;
+    }
+    .navigateDiv {
+        height: 60vh;
+        max-width: 20vw;
+    }
+    #tetris {
+        height: 60vh;
+        width: 70vw;
+    }
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width: 1224px) {
+    .controlDiv{
+        display: none;
+    }
+    #tetris{
+        height: 75vh;
+        max-height: 720px;
+        width: 30vw;
+        max-width: 660px;
+
+    }
+    .navigateDiv {
+        height: 75vh;
+        max-height: 720px;
+        max-width: 25vw;
+    }
+    .score{
+        font-size: 24px;
+    }
+}

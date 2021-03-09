@@ -5,7 +5,6 @@ function getMainMenuPage() {
   else {
     //тетрис
     document.title = "Tetris MainMenu";
-    getSetRecords();
     wrapper.innerHTML = "";
     const mainMenu = create("div");
     mainMenu.id = "mainMenu";
@@ -54,8 +53,10 @@ function getMainMenuPage() {
     const startButton = document.getElementById("start");
     startButton.onclick = () => {
       mainMenu.classList.remove("rollRight");
+      showPreloader()
       setTimeout(() => {
         window.location.hash = "gamePage";
+        hidePreloader()
       }, 1000);
     };
     //кнопка ОПЦИИ
@@ -97,7 +98,7 @@ function getMainMenuPage() {
     };
 
     const leaveOptions = create("span");
-    leaveOptions.innerText = "закрыть";
+    leaveOptions.innerText = "Закрыть";
     optionsDiv.appendChild(leaveOptions);
     leaveOptions.onclick = () => {
       optionsDiv.style.display = "none";
@@ -119,14 +120,13 @@ function getMainMenuPage() {
     recordsDiv.appendChild(results);
     const closeRecordsDiv = create("span");
     recordsDiv.className = "recordsDiv";
-    closeRecordsDiv.innerText = "закрыть";
+    closeRecordsDiv.innerText = "Закрыть";
     recordsDiv.appendChild(closeRecordsDiv);
     closeRecordsDiv.onclick = () => {
+      hidePreloader()
       recordsDiv.style.display = "none";
     };
     const records = document.getElementById("records");
-
-    // recordsList.length < 1 && getRecords()
 
     function updateScore(data) {
       names.innerHTML = "";
@@ -144,6 +144,7 @@ function getMainMenuPage() {
     }
 
     records.onclick = () => {
+      showPreloader()
       getSetRecords(updateScore);
     };
     const logout = document.getElementById("logout");
@@ -153,8 +154,10 @@ function getMainMenuPage() {
       mainMenuAudio.currentTime = 0;
       localStorage.clear();
       mainMenu.classList.remove("rollRight");
+      showPreloader()
       setTimeout(() => {
         window.location.hash = "login";
+        hidePreloader()
       }, 1000);
     };
     setTimeout(() => {
@@ -162,7 +165,6 @@ function getMainMenuPage() {
     }, 100);
 
     //свайпы
-    document.addEventListener("touchstart", handleTouchStart);
     document.addEventListener("touchmove", handleMoveForLogout);
 
     function handleMoveForLogout(e) {
@@ -170,9 +172,8 @@ function getMainMenuPage() {
         return false;
       }
       let x2 = e.touches[0].clientX;
-
       let diffX = x2 - x1;
-      if (diffX > 200) {
+      if (diffX > 300) {
         logout.click();
         document.removeEventListener("touchmove", handleMoveForLogout);
       }

@@ -1,3 +1,4 @@
+
 .loginForm {
   height: 85vh;
   width: 60vw;
@@ -24,12 +25,12 @@
 
 label {
   display: block;
-  color: #2f6648;
-  font-family: "Press Start 2P", cursive;
+  color: #ffffff;
   text-align: center;
   font-size: 5vh;
   font-weight: 600;
   padding: 5px;
+  text-shadow: #039be5 3px 0 10px;
 }
 
 .loginForm span {
