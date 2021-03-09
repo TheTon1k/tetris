@@ -173,7 +173,7 @@ function getMainMenuPage() {
       }
       let x2 = e.touches[0].clientX;
       let diffX = x2 - x1;
-      if (diffX > 250) {
+      if (diffX > 300) {
         logout.click();
         document.removeEventListener("touchmove", handleMoveForLogout);
       }
