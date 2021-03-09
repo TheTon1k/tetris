@@ -1,6 +1,6 @@
 .mainMenu {
   overflow: hidden;
-  height: 85vh;
+  height: 100%;
   width: 60vw;
   display: flex;
   justify-content: flex-start;
@@ -18,6 +18,9 @@
 
 .welcome {
   font-size: 3vw;
+  text-shadow: #039be5 3px 0 10px;
+
+
 }
 .mainMenu img {
   width: 30px;
@@ -32,10 +35,10 @@
   text-align: center;
   list-style: none;
   font-size: 10vh;
-  background-color: rgb(92, 206, 252);
+  text-shadow: #039be5 3px 0 10px;
+  color: #fff;
   margin: 1rem;
   border-radius: 5%;
-  user-select: none;
 }
 
 .optionsDiv {
@@ -79,6 +82,7 @@
   width: 50vw;
   font-size: 5vh;
   padding: 1rem;
+  text-align: left;
 }
 .recordsDiv > span {
   cursor: pointer;
@@ -116,6 +120,12 @@
 
 @media screen and (max-width: 850px) {
   .optionsDiv,.recordsDiv {
-    width: 90%;
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .recordsDiv {
+    font-size: 8vw;
   }
 }
