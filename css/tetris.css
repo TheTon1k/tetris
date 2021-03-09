@@ -137,19 +137,23 @@ and (orientation: landscape) {
         height: 78vh;
         width: 50vw;
     }
+
     .navigateDiv {
         height: 78vh;
         width: 23vw;
     }
+
     button.controlButton {
         margin: 5px;
         font-size: 11px;
         width: 11vw;
         height: 5vh;
     }
+
     .score {
-        font-size: 10px;
+        font-size: 9px;
     }
+
     #nextFigure {
         max-height: 20vh;
         width: 95%;
@@ -162,7 +166,6 @@ and (min-device-width: 768px)
 and (max-device-width: 1024px)
 and (min-device-height: 400px)
 and (orientation: landscape) {
-
     #tetris {
         height: 75vh;
         width: 75vw;
