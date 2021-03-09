@@ -72,7 +72,7 @@ const newResults = (list, score, p) => {
   getSetRecords(false, "UPDATE", p, recordsList);
 };
 
-//для свайпа
+//для  свайпа
 let x1 = null;
 let y1 = null;
 

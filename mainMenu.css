@@ -2,10 +2,10 @@
   overflow: hidden;
   height: 85vh;
   width: 60vw;
-  /* background: url("./assets/imgs/tetris-wallpaper-hd-1440x900-450598.jpg") top   no-repeat;*/
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  text-align: center;
   flex-direction: column;
   position: relative;
   transform: translateX(200vw);
@@ -111,5 +111,11 @@
   }
   .loginForm input {
     min-width: 30vh;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .optionsDiv,.recordsDiv {
+    width: 90%;
   }
 }

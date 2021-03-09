@@ -112,6 +112,7 @@ function getGamePage(reload) {
                     canvasesDiv.classList.remove("roll");
                     controlDiv.classList.remove("roll");
                     score = 0;
+                    cancelAnimationFrame(animation)
                     setTimeout(() => {
                         window.location.hash = "mainPage";
                     }, 1000);
@@ -564,6 +565,7 @@ function getGamePage(reload) {
             if (diffY > 200) {
                 mainMenuSpan.click();
                 document.removeEventListener("touchmove", handleMoveToMainMenu);
+                cancelAnimationFrame(animation)
             }
         }
     }
