@@ -241,12 +241,32 @@ button.controlButton.up {
 @media screen and (max-width: 450px) and (max-height: 640px) {
   #tetris {
     max-height: 50vh;
+    max-width: 70vw;
   }
 
   .navigateDiv {
     max-height: 50vh;
+    max-width: 25vw;
+
   }
   .score{
     font-size: 12px;
   }
 }
+
+@media screen and (max-width: 400px){
+  #tetris {
+    max-height: 50vh;
+    max-width: 70vw;
+  }
+
+  .navigateDiv {
+    max-height: 50vh;
+    max-width: 25vw;
+
+  }
+  .score{
+    font-size: 12px;
+  }
+}
+
