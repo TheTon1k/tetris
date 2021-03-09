@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: "Press Start 2P", cursive;
+}
+*:active,*:focus{
+    outline: none;
+
+}
+
+
+body {
+    background: url("./assets/imgs/tetrisBG.jpg") no-repeat center;
+    background-size: cover;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}
+#wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 100vh;
+    width: 100%;
+    padding: 1vw;
+}
+button{
+    appearance: none;
+    border: 1px solid #039be5;
+    border-radius: 5px;
+    background: #fff;
+    color: #039be5;
+    font-weight: 600;
+    padding: 8px 16px;
+    font-size: 16px;
+}
+
+
+button:active{
+    box-shadow: 0 3px 3px 3px #039be5;
+}
