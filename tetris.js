@@ -1,11 +1,36 @@
-function getGamePage() {
-    if (!getLS()) window.location.hash = "login";
+function getGamePage(reload) {
+    if (!getLS()) window.location.replace = "login";
     else {
-        const wrapper = document.getElementById("wrapper");
+        document.title = "Tetris";
         wrapper.innerHTML = "";
-        canvasesDiv = create('div')
-        canvasesDiv.className = 'canvasesDiv'
-        wrapper.appendChild((canvasesDiv))
+        let canvasesDiv = create("div");
+        reload
+            ? (canvasesDiv.className = "canvasesDiv roll")
+            : (canvasesDiv.className = "canvasesDiv topPos");
+        wrapper.appendChild(canvasesDiv);
+
+        const controlDiv = create("div");
+        controlDiv.className = "controlDiv topPos";
+        wrapper.appendChild(controlDiv);
+
+        // buttons
+        function createControlButton(cls, text, move) {
+            let button = document.createElement("button");
+            button.innerText = text;
+            button.className = `controlButton ${cls}`;
+            controlDiv.appendChild(button);
+            button.onclick = () => {
+                moveBlock(move);
+                isVibration && supportsVibrate && window.navigator.vibrate(20);
+            };
+            return button;
+        }
+
+        let upButton = createControlButton("up", "\u2191", "rotate");
+        let leftButton = createControlButton("lt", "\u2190", "left");
+        let downButton = createControlButton("dn", "\u2193", "down");
+        let rightButton = createControlButton("rt", "\u2192", "right");
+
         const gameDiv = create("div");
         gameDiv.className = "gameDiv";
         canvasesDiv.appendChild(gameDiv);
@@ -19,27 +44,27 @@ function getGamePage() {
         navigateDiv.className = "navigateDiv";
         canvasesDiv.appendChild(navigateDiv);
         //
-        const scoreText = create('span')
+        const scoreText = create("span");
         scoreText.className = "score";
-        scoreText.innerText = 'Очки'
+        scoreText.innerText = "Очки";
         navigateDiv.appendChild(scoreText);
 
         const scoreSpan = create("span");
         scoreSpan.className = "score bordered";
         navigateDiv.appendChild(scoreSpan);
 
-        const levelText = create('span')
+        const levelText = create("span");
         levelText.className = "score";
-        levelText.innerText = 'Уровень'
+        levelText.innerText = "Уровень";
         navigateDiv.appendChild(levelText);
 
         const levelSpan = create("span");
         levelSpan.className = "score bordered";
         navigateDiv.appendChild(levelSpan);
 
-        const nextFigSpan = create('span')
+        const nextFigSpan = create("span");
         nextFigSpan.className = "score ";
-        nextFigSpan.innerHTML = `Следующая <br> фигура`
+        nextFigSpan.innerHTML = `Следующая <br> фигура`;
         navigateDiv.appendChild(nextFigSpan);
 
         const nextFigureCanvas = create("canvas");
@@ -47,67 +72,70 @@ function getGamePage() {
         nextFigureCanvas.className = "bordered";
         navigateDiv.appendChild(nextFigureCanvas);
 
-        const clearedSpanText = create('span')
+        const clearedSpanText = create("span");
         clearedSpanText.className = "score";
-        clearedSpanText.innerText = 'Очищено'
+        clearedSpanText.innerText = "Очищено";
         navigateDiv.appendChild(clearedSpanText);
 
-        const clearedSpan = create('span')
+        const clearedSpan = create("span");
         clearedSpan.className = "score bordered";
         navigateDiv.appendChild(clearedSpan);
 
-        let isPaused = false
-        const pauseSpan = create('span')
-        pauseSpan.className = 'score action bordered'
-        pauseSpan.innerText = 'Пауза'
+        let isPaused = false;
+        const pauseSpan = create("span");
+        pauseSpan.className = "score action bordered";
+        pauseSpan.innerText = "Пауза";
 
         pauseSpan.onclick = () => {
-            isPaused = !isPaused
-            pauseSpan.innerText = isPaused ? 'Старт' : 'Пауза'
-            update()
-        }
+            isPaused = !isPaused;
+            pauseSpan.innerText = isPaused ? "Старт" : "Пауза";
+            update();
+        };
         navigateDiv.appendChild(pauseSpan);
 
-
-        const restart = create('span')
-        restart.className = 'action score bordered'
-        restart.innerText = 'Рестарт'
+        const restart = create("span");
+        restart.className = "action score bordered";
+        restart.innerText = "Рестарт";
         restart.onclick = () => {
-            isMusicOn && mainMenuAudio.play()
-            getGamePage()
-        }
-        navigateDiv.appendChild(restart)
+            isMusicOn && mainMenuAudio.play();
+            getGamePage(true);
+        };
+        navigateDiv.appendChild(restart);
 
-        const mainMenuSpan = create('span')
-        mainMenuSpan.className = 'action score'
-        mainMenuSpan.innerText = 'Меню'
+        const mainMenuSpan = create("span");
+        mainMenuSpan.className = "action score";
+        mainMenuSpan.innerText = "Меню";
         mainMenuSpan.onclick = () => {
-            if (score !== 0 && !gameOver) {
-                let a = confirm('При переходе вы потеряете текущий результат.')
+            if (score && !gameOver) {
+                let a = confirm("При переходе вы потеряете текущий результат.");
                 if (a) {
-                    canvasesDiv.classList.remove('roll')
+                    canvasesDiv.classList.remove("roll");
+                    controlDiv.classList.remove("roll");
+                    score = 0;
                     setTimeout(() => {
-                        window.location.hash = 'mainPage'
-                    }, 1000)
+                        window.location.hash = "mainPage";
+                    }, 1000);
                 }
             } else {
-                canvasesDiv.classList.remove('roll')
+                canvasesDiv.classList.remove("roll");
+                controlDiv.classList.remove("roll");
                 setTimeout(() => {
-                    window.location.hash = 'mainPage'
-                }, 1000)
+                    window.location.hash = "mainPage";
+                }, 1000);
             }
-        }
+        };
 
         navigateDiv.appendChild(mainMenuSpan);
-
 
         const contextNextFigure = nextFigureCanvas.getContext("2d");
 
         contextNextFigure.scale(100, 100);
 
         //размер поля 600x720
-        canvas.width = 600;
+        canvas.width = 660;
         canvas.height = 720;
+        context.fillStyle = "black";
+        context.fillRect(0, 0, canvas.width, canvas.height);
 
         // размеры блока со следующей фигурой
         nextFigureCanvas.width = 126;
@@ -119,10 +147,15 @@ function getGamePage() {
         let rowsSize = canvas.height / blockSize;
         let colsSize = canvas.width / blockSize;
 
-        let animation = null
+        let animation = null;
 
         //счет
         let score = 0;
+        //подтверждение смены страницы/обновления
+        window.onbeforeunload = function () {
+            if (score && !gameOver) return true;
+        };
+
         //фигуры
         const figures = {
             L: [
@@ -178,11 +211,10 @@ function getGamePage() {
         let maxCounter = 30;
         //каждые 5 собранных рядов увеличиваем скорость падения фигуры(max-counter) на 3
         let clearedRows = 0;
-        clearedSpan.innerText = clearedRows
+        clearedSpan.innerText = clearedRows;
 
-        let level = 1
-        levelSpan.innerText = level
-
+        let level = 1;
+        levelSpan.innerText = level;
 
         //массив с фигурами
         let figuresArray = [];
@@ -199,7 +231,6 @@ function getGamePage() {
         let nextFigure = null;
 
         let gameOver = false;
-
 
         // Функция возвращает случайное число в заданном диапазоне
         function getRandomFigure(min, max) {
@@ -233,7 +264,7 @@ function getGamePage() {
 
             const col = arena[0].length / 2 - Math.ceil(matrix[0].length / 2);
             const row = -1;
-            // вот что возвращает функция
+            // возвращаем объект фигуры
             return {
                 name, // имя фигуры
                 matrix, // матрица фигуры
@@ -245,9 +276,7 @@ function getGamePage() {
         // поворачиваем матрицу и возвращаем перевернутую на 90 градусов
         function rotateFigure(matrix) {
             const N = matrix.length - 1;
-            return matrix.map((row, i) =>
-                row.map((val, j) => matrix[N - j][i])
-            );
+            return matrix.map((row, i) => row.map((val, j) => matrix[N - j][i]));
         }
 
         // проверка на валидность размещения
@@ -300,7 +329,7 @@ function getGamePage() {
                     }
                     score += 200;
                     clearedRows++;
-                    clearedSpan.innerText = clearedRows
+                    clearedSpan.innerText = clearedRows;
 
                     isVibration && supportsVibrate && window.navigator.vibrate(300);
                 } else {
@@ -315,29 +344,37 @@ function getGamePage() {
 
         function gameOverFunc() {
             cancelAnimationFrame(animation);
-            mainMenuAudio.pause()
-            mainMenuAudio.currentTime = 0
-            isMusicOn && gameOverAudio.play()
+            mainMenuAudio.pause();
+            mainMenuAudio.currentTime = 0;
+            isMusicOn && gameOverAudio.play();
             gameOver = true;
-            let pass = generatePassword()
-            getSetRecords((val) => newResults(val, score, pass), 'LOCKGET', pass)
+            let pass = generatePassword();
+            getSetRecords((val) => newResults(val, score, pass), "LOCKGET", pass);
             context.fillStyle = "#000";
             context.globalAlpha = 0.8;
-            context.fillRect(0, canvas.height / 2 - blockSize * 2, canvas.width, blockSize * 4);
-            context.globalAlpha = 1
+            context.fillRect(
+                0,
+                canvas.height / 2 - blockSize * 2,
+                canvas.width,
+                blockSize * 4
+            );
+            context.globalAlpha = 1;
             context.fillStyle = "white";
-            context.font = 'bold 5vh serif';
+            context.font = "bold 5vh serif";
             context.textAlign = "center";
             context.textBaseline = "middle";
             context.fillText("GAME OVER!", canvas.width / 2, canvas.height / 2);
         }
 
-        document.addEventListener("keydown", (e) => {
-            if (gameOver) return;
-            if (isPaused) return;
-
-            switch (e.keyCode) {
-                case 37:
+        function moveBlock(side) {
+            switch (side) {
+                case "rotate":
+                    const newMatrix = rotateFigure(currentFigure.matrix);
+                    if (isValidMove(newMatrix, currentFigure.row, currentFigure.col)) {
+                        currentFigure.matrix = newMatrix;
+                    }
+                    break;
+                case "left":
                     if (
                         isValidMove(
                             currentFigure.matrix,
@@ -348,7 +385,7 @@ function getGamePage() {
                         currentFigure.col -= 1;
                     }
                     break;
-                case 39:
+                case "right":
                     if (
                         isValidMove(
                             currentFigure.matrix,
@@ -359,7 +396,7 @@ function getGamePage() {
                         currentFigure.col += 1;
                     }
                     break;
-                case 40:
+                case "down":
                     if (
                         !isValidMove(
                             currentFigure.matrix,
@@ -373,11 +410,25 @@ function getGamePage() {
                     score += 1;
                     currentFigure.row += 1;
                     break;
+            }
+        }
+
+        document.addEventListener("keydown", (e) => {
+            if (gameOver) return;
+            if (isPaused) return;
+            console.log(e.which);
+            switch (e.which) {
+                case 37:
+                    moveBlock("left");
+                    break;
+                case 39:
+                    moveBlock("right");
+                    break;
+                case 40:
+                    moveBlock("down");
+                    break;
                 case 38:
-                    const newMatrix = rotateFigure(currentFigure.matrix);
-                    if (isValidMove(newMatrix, currentFigure.row, currentFigure.col)) {
-                        currentFigure.matrix = newMatrix;
-                    }
+                    moveBlock("rotate");
                     break;
             }
         });
@@ -390,12 +441,11 @@ function getGamePage() {
 
         function update() {
             if (!isPaused) {
-                isMusicOn && mainMenuAudio.play()
+                isMusicOn && mainMenuAudio.play();
                 animation = requestAnimationFrame(update);
                 updateScore();
                 context.fillStyle = "black";
                 context.fillRect(0, 0, canvas.width, canvas.height);
-
 
                 if (currentFigure) {
                     //каждые maxCounter кадров сдвигаем фигуру
@@ -407,9 +457,10 @@ function getGamePage() {
                     //каждые 5 собранных рядов увеличиваем скорость падения, добавляем левел
                     if (clearedRows % 5 === 0 && clearedRows > 0) {
                         maxCounter -= 3;
-                        level += 1
+                        //воспроизводим музыку нового уровня
+                        isMusicOn && lvlUpAudio.play();
                         // прописываем текущий уровень исходя из количества очищенных рядов
-                        levelSpan.innerText = level
+                        levelSpan.innerText = level;
                     }
 
                     if (
@@ -428,7 +479,12 @@ function getGamePage() {
                     for (let row = 0; row < currentFigure.matrix.length; row++) {
                         for (let col = 0; col < currentFigure.matrix[row].length; col++) {
                             if (currentFigure.matrix[row][col]) {
-                                context.fillRect((currentFigure.col + col) * blockSize, (currentFigure.row + row) * blockSize, blockSize - 2, blockSize - 2);
+                                context.fillRect(
+                                    (currentFigure.col + col) * blockSize,
+                                    (currentFigure.row + row) * blockSize,
+                                    blockSize - 2,
+                                    blockSize - 2
+                                );
                             }
                         }
                     }
@@ -440,7 +496,12 @@ function getGamePage() {
                 //рисуем следующую фигуру
                 if (figuresArray.length > 0) {
                     contextNextFigure.fillStyle = "black";
-                    contextNextFigure.fillRect(0, 0, nextFigureCanvas.width, nextFigureCanvas.height);
+                    contextNextFigure.fillRect(
+                        0,
+                        0,
+                        nextFigureCanvas.width,
+                        nextFigureCanvas.height
+                    );
                     nextFigure = figuresArray[figuresArray.length - 1];
                     let matrix = figures[nextFigure];
                     contextNextFigure.fillStyle = figuresColors[nextFigure];
@@ -449,10 +510,17 @@ function getGamePage() {
                             if (matrix[row][col]) {
                                 contextNextFigure.fillRect(
                                     col * blockSize +
-                                    (nextFigure === "O" ? blockSize : nextFigure === "I" ? blockSize / 6 : blockSize / 2),
-                                    nextFigure === "I" ? nextFigureCanvas.height / 3 : nextFigureCanvas.height / 4 + row * blockSize, blockSize - 2, blockSize - 2
+                                    (nextFigure === "O"
+                                        ? blockSize
+                                        : nextFigure === "I"
+                                            ? blockSize / 6
+                                            : blockSize / 2),
+                                    nextFigure === "I"
+                                        ? nextFigureCanvas.height / 3
+                                        : nextFigureCanvas.height / 4 + row * blockSize,
+                                    blockSize - 2,
+                                    blockSize - 2
                                 );
-
                             }
                         }
                     }
@@ -464,17 +532,41 @@ function getGamePage() {
                             const name = arena[row][col];
                             context.fillStyle = figuresColors[name];
                             //чтобы была клетка делаем заливку на 2 пикселя меньше размера блока
-                            context.fillRect(col * blockSize, row * blockSize, blockSize - 2, blockSize - 2);
+                            context.fillRect(
+                                col * blockSize,
+                                row * blockSize,
+                                blockSize - 2,
+                                blockSize - 2
+                            );
                         }
                     }
                 }
             } else {
-                cancelAnimationFrame(animation)
-                isMusicOn && mainMenuAudio.pause()
+                cancelAnimationFrame(animation);
+                isMusicOn && mainMenuAudio.pause();
+            }
+        }
 
+        if (!reload) {
+            canvasesDiv.classList.add("roll");
+            controlDiv.classList.add("roll");
+        }
+        //свайпы
+        document.addEventListener("touchstart", handleTouchStart);
+        document.addEventListener("touchmove", handleMoveToMainMenu);
+
+        function handleMoveToMainMenu(e) {
+            if (!y1) {
+                return false;
+            }
+            let y2 = e.touches[0].clientY;
+            let diffY = y1 - y2;
+            if (diffY > 200) {
+                mainMenuSpan.click();
+                document.removeEventListener("touchmove", handleMoveToMainMenu);
             }
         }
     }
-    canvasesDiv.classList.add('roll')
-    window.setTimeout(update, 1500)
+
+    !reload ? window.setTimeout(update, 1500) : update();
 }
