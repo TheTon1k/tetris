@@ -216,6 +216,7 @@ function getGamePage(reload) {
         let maxCounter = 30;
         //каждые 5 собранных рядов увеличиваем скорость падения фигуры(max-counter) на 3
         let clearedRows = 0;
+        let clearedRowsCounter = 0
         clearedSpan.innerText = clearedRows;
 
         let level = 1;
@@ -334,6 +335,7 @@ function getGamePage(reload) {
                     }
                     score += 200;
                     clearedRows++;
+                    clearedRowsCounter++
                     clearedSpan.innerText = clearedRows;
 
                     isVibration && supportsVibrate && window.navigator.vibrate(300);
@@ -461,8 +463,9 @@ function getGamePage(reload) {
                     }
 
                     //каждые 5 собранных рядов увеличиваем скорость падения, добавляем левел
-                    if (clearedRows % 5 === 0 && clearedRows > 0) {
+                    if (clearedRowsCounter % 5 === 0 && clearedRows > 0) {
                         maxCounter -= 3;
+                        clearedRowsCounter = 0
                         //воспроизводим музыку нового уровня
                         isMusicOn && lvlUpAudio.play();
                         // прописываем текущий уровень исходя из количества очищенных рядов
@@ -559,13 +562,14 @@ function getGamePage(reload) {
         }
         //свайп
         document.addEventListener("touchmove", handleMoveToMainMenu);
+
         function handleMoveToMainMenu(e) {
             if (!y1) {
                 return false;
             }
             let y2 = e.touches[0].clientY;
             let diffY = y1 - y2;
-            if (diffY > 350) {
+            if (diffY > 150) {
                 mainMenuSpan.click();
                 document.removeEventListener("touchmove", handleMoveToMainMenu);
                 cancelAnimationFrame(animation)
