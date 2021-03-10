@@ -219,7 +219,7 @@ and (min-width: 1224px) {
     #tetris{
         height: 75vh;
         max-height: 720px;
-        width: 30vw;
+        width: 35vw;
         max-width: 660px;
 
     }
