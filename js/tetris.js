@@ -424,7 +424,6 @@ function getGamePage(reload) {
         document.addEventListener("keydown", (e) => {
             if (gameOver) return;
             if (isPaused) return;
-            console.log(e.which);
             switch (e.which) {
                 case 37:
                     moveBlock("left");
@@ -470,6 +469,7 @@ function getGamePage(reload) {
                         isMusicOn && lvlUpAudio.play();
                         // прописываем текущий уровень исходя из количества очищенных рядов
                         level++
+                        console.log(level)
                         levelSpan.innerText = level;
                     }
 
