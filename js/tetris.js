@@ -463,7 +463,7 @@ function getGamePage(reload) {
                     }
 
                     //каждые 5 собранных рядов увеличиваем скорость падения, добавляем левел
-                    if (clearedRowsCounter % 5 === 0 && clearedRows > 0) {
+                    if (clearedRowsCounter % 5 === 0 && clearedRowsCounter > 0) {
                         maxCounter -= 3;
                         clearedRowsCounter = 0
                         //воспроизводим музыку нового уровня
