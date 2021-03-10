@@ -469,6 +469,7 @@ function getGamePage(reload) {
                         //воспроизводим музыку нового уровня
                         isMusicOn && lvlUpAudio.play();
                         // прописываем текущий уровень исходя из количества очищенных рядов
+                        level++
                         levelSpan.innerText = level;
                     }
 
